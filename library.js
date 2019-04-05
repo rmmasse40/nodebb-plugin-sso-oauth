@@ -57,12 +57,12 @@
 			consumerSecret: nconf.get('oauth:secret'),	// don't change this line
 		},
 		oauth2: {
-			authorizationURL: 'https://internal.braincloudservers.com/oauth/authorize',
-			tokenURL: 'https://internal.braincloudservers.com/oauth/token',
+			authorizationURL: 'https://' + nconf.get('oauth:hostname') + '/oauth/authorize',
+			tokenURL: 'https://' + nconf.get('oauth:hostname') + '/oauth/token',
 			clientID: nconf.get('oauth:id'),	// don't change this line
 			clientSecret: nconf.get('oauth:secret'),	// don't change this line
 		},
-		userRoute: 'https://internal.braincloudservers.com/user/me',	// This is the address to your app's "user profile" API endpoint (expects JSON)
+		userRoute: 'https://' + nconf.get('oauth:hostname') + '/user/me',	// This is the address to your app's "user profile" API endpoint (expects JSON)
 	});
 
 	const OAuth = {};
