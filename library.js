@@ -79,6 +79,17 @@
 	} else {
 		configOk = true;
 	}
+	
+	OAuth.getConfig = function(config, callback) {
+		
+		settings['secret'] = nconf.get('intercom:secret');
+		settings['appid'] = nconf.get('intercom:appid');
+		
+		config['intercom'] = settings;
+		
+		callback(null, config);
+	});
+
 
 	OAuth.getStrategy = function (strategies, callback) {
 		if (configOk) {
