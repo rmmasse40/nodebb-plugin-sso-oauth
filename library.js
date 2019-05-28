@@ -79,6 +79,11 @@
 	} else {
 		configOk = true;
 	}
+	
+	OAuth.addHash = function( uid, data, fields) {
+		fields.push('userHash');
+		data['userHash'] = 'hash';
+	};
 
 	OAuth.getStrategy = function (strategies, callback) {
 		if (configOk) {
