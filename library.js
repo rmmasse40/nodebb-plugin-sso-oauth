@@ -26,6 +26,7 @@
 	const passport = module.parent.require('passport');
 	const nconf = module.parent.require('nconf');
 	const winston = module.parent.require('winston');
+	const crypto = require('crypto');
 
 	/**
 	 * REMEMBER
@@ -82,7 +83,10 @@
 	
 	OAuth.addHash = function( users, callback) {
 		users.forEach(function (user) {
-			user['userHash'] = 'hash';
+			var secret = nconf.get('intercom:secret');
+			var hmac = crypto.createHmac('sha256', secret);
+			hmac.update(user.email);
+			user['userHash'] = hmac.digest('hex');
 		});
 		callback(null, users);
 	};
