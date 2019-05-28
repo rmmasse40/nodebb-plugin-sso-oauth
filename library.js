@@ -80,9 +80,9 @@
 		configOk = true;
 	}
 	
-	OAuth.addHash = function( uid, data, fields) {
-		fields.push('userHash');
-		data['userHash'] = 'hash';
+	OAuth.addHash = function( data, next) {
+		data.fields.push('userHash');
+		data.data['userHash'] = 'hash';
 	};
 
 	OAuth.getStrategy = function (strategies, callback) {
