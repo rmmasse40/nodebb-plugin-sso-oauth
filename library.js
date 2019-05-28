@@ -83,10 +83,12 @@
 	
 	OAuth.addHash = function( users, callback) {
 		users.forEach(function (user) {
-			var secret = nconf.get('intercom:secret');
-			var hmac = crypto.createHmac('sha256', secret);
-			hmac.update(user.email);
-			user['userHash'] = hmac.digest('hex');
+			if (user.hasOwnProperty('email')) {
+				var secret = nconf.get('intercom:secret');
+				var hmac = crypto.createHmac('sha256', secret);
+				hmac.update(user.email);
+				user['userHash'] = hmac.digest('hex');
+			}
 		});
 		callback(null, users);
 	};
